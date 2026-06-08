@@ -1,0 +1,617 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+/* ==========================================================================
+   DESIGN SYSTEM (:root Variables)
+   ========================================================================== */
+:root {
+    /* 1. Color Palette (모던 에센셜) */
+    --color-bg: #FCFCFC;         /* 배경: 눈이 편안한 오프화이트 */
+    --color-bg-sub: #F4F4F6;     /* 서브 배경: Hero 섹션이나 카드 배경 */
+    --color-text-main: #1A1A1A;  /* 주 텍스트: 선명한 챠콜 블랙 */
+    --color-text-sub: #666666;   /* 보조 텍스트: 가독성 좋은 회색 */
+    --color-text-muted: #888888; /* 옅은 텍스트: 날짜, 카테고리 등 */
+    
+    --color-primary: #4A5568;    /* 보조/포인트 색상: 차분한 블루 그레이 */
+    --color-primary-hover: #2D3748; /* 버튼 호버: 깊이감 있는 딥 네이비 그레이 */
+    --color-border: #E9E9E9;     /* 테두리/선 색상 */
+
+    /* 2. Typography (프리텐다드) */
+    --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --letter-spacing-base: -0.03em; /* 프리텐다드 특유의 쫀쫀한 자간 */
+
+    /* 3. Spacing (가독성 높은 미니멀 여백 시스템) */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;            /* 일반적인 카드 내부 여백 등 */
+    --space-lg: 40px;            /* 타이틀 아래 여백 등 */
+    --space-section-pc: 120px;   /* PC 버전 섹션 위아래 여백 (더 시원하게 확대!) */
+    --space-section-mo: 70px;    /* 모바일 버전 섹션 위아래 여백 */
+
+    /* 4. Borders (과하지 않고 깔끔한 미니멀 라운드) */
+    --radius-sm: 4px;            /* 버튼, 작은 요소용 */
+    --radius-md: 8px;            /* 프로젝트 카드 상자용 (부드러운 느낌) */
+}
+
+/* ==========================================================================
+   1. 기본 설정 및 초기화 (Reset & Base)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background-color: #fcfcfc; /* 눈이 피로하지 않은 따뜻한 흰색 */
+    color: #1a1a1a;            /* 가독성이 좋은 짙은 회색 */
+    line-height: 1.7;          /* 줄간격을 넓혀 가독성 향상 */
+    letter-spacing: -0.02em;   /* 글자 자간을 좁혀 세련된 느낌 */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 모든 섹션의 공통 여백 및 컨테이너 크기 설정 */
+.section {
+    padding: 100px 20px;       /* 위아래 여백을 넓게 주어 시원한 느낌 */
+    scroll-margin-top: 80px; /* 내비게이션 클릭 시 섹션이 헤더에 가려지지 않도록 여백 확보 */
+}
+
+.section-container {
+    max-width: 1000px;          /* 본문 폭을 제한하여 시선 분산 방지 */
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--color-text-main);
+    border-bottom: 2px solid var(--color-text-main);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* 일반 버튼 스타일 */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* ==========================================================================
+   2. 상단 헤더 및 내비게이션 (Header & Navigation)
+   ========================================================================== */
+.site-header {
+    position: fixed;           /* 상단 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(252, 252, 252, 0.9); /* 살짝 투명한 배경 처리 */
+    backdrop-filter: blur(10px);               /* 뒤 배경 흐리게 */
+    border-bottom: 1px solid #eeeeee;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* 로고 왼쪽, 메뉴 오른쪽 배치 */
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+.nav-list {
+    display: flex;
+    gap: 30px;                 /* 메뉴 간격 */
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #666666;
+}
+
+.nav-link:hover {
+    color: #111111;            /* 마우스 올렸을 때 진해짐 */
+}
+
+/* ==========================================================================
+   3. 각 섹션별 커스텀 스타일 (Sections)
+   ========================================================================== */
+
+/* 1) Hero 섹션: 웹사이트의 첫 화면 */
+.hero-section {
+    padding-top: 200px;        /* 헤더 높이를 감안한 위쪽 여백 */
+    padding-bottom: 150px;
+    background-color: #f4f4f6; /* 약간 차분한 그레이 톤 배경 */
+    display: flex;
+    flex-direction: column;   /* 요소를 위에서 아래로 세로 배치 */
+    justify-content: center;  /* 수직 기준 가운데 정렬 */
+    align-items: flex-start;  /* 왼쪽 정렬 (미니멀 감성을 위해 좌측 정렬 유지) */
+}
+
+.hero-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    
+    /* 내부 컨텐츠 간의 간격을 변수로 일정하게 제어 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);     /* 각 요소(서브타이틀, 타이틀, 설명) 사이의 간격을 16px로 쫀쫀하게! */
+}
+
+.hero-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-sub);
+    margin: 0; /* flex gap을 사용하므로 기존 마진은 초기화 */
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--color-text-main);
+    margin: 0;
+    word-break: keep-all;
+    
+    /* 타이틀과 밑에 있는 설명 사이만 간격을 조금 더 주고 싶다면 */
+    margin-bottom: var(--space-xs); 
+}
+
+/* 버튼은 다른 요소들보다 아래로 조금 더 떨어뜨려 배치 */
+.hero-container .btn {
+    margin-top: var(--space-md); /* 버튼만 위쪽 여백을 24px로 넉넉히 */
+    align-self: flex-start;      /* 부모가 flex여도 버튼 크기가 꽉 차거나 늘어나지 않게 고정 */
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    color: var(--color-text-sub);
+    max-width: 600px;
+    word-break: keep-all;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Hero 섹션 순차적 Fade-In 애니메이션
+   ========================================================================== */
+
+/* 1. 애니메이션 핵심 효과 정의 (Keyframes) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* 20px 아래에서 시작 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* 원래 위치로 올라오며 선명해짐 */
+    }
+}
+
+/* 2. Hero 섹션 내 애니메이션 공통 적용 */
+.hero-sub,
+.hero-title,
+.hero-desc,
+.hero-container .btn {
+    opacity: 0; /* 처음에 보이지 않도록 초기화 */
+    animation-name: fadeInUp;
+    animation-duration: 0.8s;        /* 0.8초 동안 부드럽게 재생 */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;   /* 애니메이션이 끝난 후 'to(선명한 상태)' 유지 */
+}
+
+/* 3. 0.2초 간격 순차적 등장 세팅 (Animation Delay) */
+
+/* ① 가장 먼저 등장하는 부제 (딜레이 없음) */
+.hero-sub {
+    animation-delay: 0s;
+}
+
+/* ② 0.2초 뒤에 등장하는 타이틀 */
+.hero-title {
+    animation-delay: 0.2s;
+}
+
+/* ③ 0.4초 뒤에 등장하는 한 줄 설명 */
+.hero-desc {
+    animation-delay: 0.4s;
+}
+
+/* ④ 0.6초 뒤에 등장하는 최종 버튼 */
+.hero-container .btn {
+    animation-delay: 0.6s;
+}
+
+/* ==========================================================================
+   2) About 섹션 커스텀 스타일 (Flexbox)
+   ========================================================================== */
+.about-section {
+    background-color: var(--color-bg);
+}
+
+/* 이미지와 텍스트 영역을 가로로 정렬 */
+.about-wrapper {
+    display: flex;
+    gap: 60px; /* 이미지와 글 사이의 여유로운 간격 */
+    align-items: flex-start;
+}
+
+/* 왼쪽 프로필 이미지 스타일 */
+.about-profile {
+    flex: 0 0 250px; /* 이미지 영역 너비를 250px로 고정 */
+}
+
+.profile-img-box {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* 세로가 약간 긴 미니멀한 비율 (4:3이나 1:1 정방향도 좋아요) */
+    background-color: var(--color-bg-sub); /* 사진이 없을 때 나올 임시 회색 배경 */
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 박스 비율에 맞춰 예쁘게 잘리도록 설정 */
+}
+
+/* 오른쪽 정보 영역 스타일 */
+.about-info {
+    flex: 1; /* 남은 공간을 모두 차지 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg); /* 소개글과 인적사항 사이의 간격 */
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    word-break: keep-all;
+    margin: 0;
+}
+
+/* 인적사항 목록 스타일 */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm); /* 각 항목 사이의 간격 */
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-md);
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1rem;
+}
+
+.detail-label {
+    flex: 0 0 100px; /* 라벨(Name, Education 등)의 너비를 동일하게 맞춤 */
+    font-weight: 700;
+    color: var(--color-primary); /* 포인트 컬러 적용 */
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    padding-top: 2px; /* 텍스트 높이 균형 맞춤 */
+}
+
+.detail-value {
+    color: var(--color-text-sub);
+    word-break: keep-all;
+}
+
+/* 3) Works 섹션: 프로젝트 그리드 */
+.works-section {
+    background-color: #fcfcfc;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 40px;                 /* 프로젝트 카드 간격 */
+}
+
+.work-item {
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-item:hover {
+    transform: translateY(-5px); /* 마우스 올렸을 때 살짝 뜨는 효과 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.work-thumbnail {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.img-placeholder {
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.work-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 8px;
+}
+
+.work-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #888888;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.work-desc {
+    font-size: 0.95rem;
+    color: #666666;
+}
+
+/* 4) Skills 섹션 */
+.skills-section {
+    background-color: #ffffff;
+}
+
+.skills-lists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.skill-group {
+    flex: 1;
+    min-width: 280px;
+}
+
+.skill-group h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 20px;
+}
+
+.skill-group ul li {
+    font-size: 1.05rem;
+    color: #555555;
+    margin-bottom: 12px;
+    padding-left: 15px;
+    position: relative;
+}
+
+/* 리스트 앞에 깔끔한 점 모양 커스텀 블릿 */
+.skill-group ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    background-color: #555555;
+    border-radius: 50%;
+}
+
+/* 5) Experience 섹션: 타임라인 형태 */
+.experience-section {
+    background-color: #fcfcfc;
+}
+
+.timeline-list {
+    border-left: 2px solid #dddddd; /* 세로 타임라인 선 */
+    padding-left: 30px;
+    margin-left: 10px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 타임라인 선 위의 동그라미 노드 */
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #222222;
+    border: 2px solid #fcfcfc;
+    border-radius: 50%;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #888888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.timeline-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+.timeline-desc {
+    font-size: 1rem;
+    color: #666666;
+}
+
+/* 6) Contact 섹션 */
+.contact-section {
+    background-color: #ffffff;
+    text-align: center;         /* 연락처 영역 가운데 정렬 */
+}
+
+.contact-section .section-title {
+    border-bottom: none;       /* 타이틀 밑줄 제거 */
+    margin-bottom: 20px;
+}
+
+.contact-desc {
+    font-size: 1.1rem;
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.contact-email a {
+    color: #111111;
+    border-bottom: 1px solid #111111; /* 링크 강조 밑줄 */
+}
+
+.contact-links a:hover {
+    border-bottom: 1px solid #111111;
+}
+
+/* ==========================================================================
+   4. 하단 푸터 (Footer)
+   ========================================================================== */
+.site-footer {
+    background-color: #111111; /* 푸터는 묵직하게 블랙 톤으로 마무리 */
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+}
+
+.copyright {
+    opacity: 0.6;              /* 저작권 문구는 살짝 투명하게 */
+}
+
+/* ==========================================================================
+   5. 모바일 반응형 처리 (Responsive Media Query)
+   ========================================================================== */
+/* 기존 @media (max-width: 768px) 섹션을 이 코드로 교체해 주세요! */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; 
+        gap: 10px;
+        padding: 15px 10px; /* 헤더 안쪽 여백 축소 */
+    }
+    
+    .nav-list {
+        gap: 12px;
+        flex-wrap: wrap;    /* 메뉴가 많을 경우 줄바꿈 허용 */
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem; /* 모바일에서 메뉴 글자 크기 살짝 축소 */
+    }
+
+    /* ⬇️ 핵심 수정 부분: Hero 섹션의 위쪽 여백을 더 늘려줍니다 */
+    .hero-section {
+        padding-top: 160px !important; /* 기존보다 여백을 확보해서 헤더에 안 가려지게 함 */
+        padding-bottom: 80px !important;
+        align-items: center;
+    }
+    
+    .hero-container {
+        align-items: center;    /* 모바일 한정: 내용물 모두 가운데 정렬 */
+        text-align: center;
+        gap: var(--space-xs);   /* 모바일에서는 간격을 조금 더 콤팩트하게 (8px) */
+    }
+    
+    .hero-title {
+        font-size: 1.9rem;
+        line-height: 1.4;
+        margin-bottom: 0;
+    }
+    
+    .hero-desc {
+        font-size: 1.05rem;
+    }
+    
+    .hero-container .btn {
+        margin-top: var(--space-sm);
+        align-self: center;     /* 모바일에서는 버튼도 가운데로 쏙! */
+    }
+    
+    .section {
+        padding: 60px 20px;
+    }
+
+    .about-wrapper {
+        flex-direction: column; /* 모바일에서는 세로로 배치 */
+        align-items: center;
+        gap: var(--space-lg);
+    }
+
+    .about-profile {
+        flex: 0 0 auto;
+        width: 180px; /* 모바일에서는 사진 크기를 조금 축소 */
+    }
+
+    .about-info {
+        gap: var(--space-md);
+    }
+
+    .about-text {
+        text-align: center; /* 모바일에서는 글을 가운데 정렬해서 정돈된 느낌 */
+        font-size: 1rem;
+    }
+
+    .profile-details {
+        width: 100%;
+    }
+    
+    .detail-item {
+        flex-direction: column; /* 모바일에서는 라벨 밑에 내용이 오도록 배치 */
+        gap: 4px;
+    }
+    
+    .detail-label {
+        flex: none;
+    }
+}
